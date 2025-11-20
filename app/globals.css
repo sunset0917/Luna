@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #000000;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.botones_web{ /* ESTE ES PARA LA PARTE INFERIOR TIPO MENU */
+  background: #d7eeff;
+  text-align: center; /* centra el texto */
+  padding: 12px;
+  color: #000000;
+  display: block;      
+  width: 100%;
+  flex: 1;
+  font-weight: bold;
+}
+
+.titulos_subpaginas{
+  font-size: 34px;
+  font-weight: bold;
+  color: #000000;
+  margin-bottom: 24px;
+  text-align: left;
+
+}
+
+.subtitulos_subpaginas{
+  font-size: 30px;
+  font-weight: bold;
+  color: #000000;
+  margin-bottom: 24px;
+  text-align: left;
+
+}
+
+.botones_otro{
+  background: #d7eeff;
+  text-align: center; /* centra el texto */
+  padding: 12px;
+  color: #000000;
+  display: block;      
+  width: 100%;
+  flex: 1;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+}
