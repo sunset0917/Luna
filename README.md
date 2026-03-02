@@ -12,7 +12,7 @@ Este repositorio contiene el diseño, implementación y validación de **Inti**,
 - ✔ LLM ejecutándose en Raspberry Pi (Ollama)
 - ✔ Integración inicial de micrófono
 - ⚠️ Pipeline de voz con latencia por optimizar
-- ❌ CAD funcional final y mecanismos
+-  CAD funcional final y mecanismos
 - ❌ Síntesis de voz definitiva
 - ❌ Fabricación e integración física completa
 - ❌ Validación experta
@@ -33,9 +33,9 @@ Este repositorio contiene el diseño, implementación y validación de **Inti**,
 - [ ] Documentar arquitectura del agente conversacional
 
 ### Prompt System
-- [ ] Definir personalidad preliminar de Inti (no clínica)
+- [X] Definir personalidad preliminar de Inti (no clínica)
 - [ ] Definir respuestas empáticas y lenguaje adecuado para entorno pediátrico
-- [ ] Incorporar restricciones éticas (no diagnóstico, no terapia médica)
+- [X] Incorporar restricciones éticas (no diagnóstico, no terapia médica)
 - [ ] Asociar emociones del robot con estilos de respuesta
 
 ---
@@ -82,10 +82,14 @@ Este repositorio contiene el diseño, implementación y validación de **Inti**,
 
 ### Diseño mecánico
 - [x] Carcasa base v1 diseñada
-- [ ] Diseño de carcasa v2 con integración real de componentes
-- [ ] Implementar mecanismo de brida con eje
+- [X] Diseño de carcasa v2 con integración real de componentes
+- [X] Implementar mecanismo de brida con eje
 - [ ] Justificar el mecanismo seleccionado
-- [ ] Diseñar acoples y soportes mecánicos
+- [X] Diseñar acoples y soportes mecánicos
+- [X] Diseño de orejas y tapa listo
+- [ ] Diseño de acople para microfono
+- [ ] Base de servomotor apoyado en cuerpo
+- [ ] Patas 
 
 ### Movimientos expresivos
 - [ ] Definir qué elementos del robot son activos y cuáles pasivos
