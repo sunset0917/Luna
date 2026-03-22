@@ -84,16 +84,17 @@ Este repositorio contiene el diseño, implementación y validación de **Inti**,
 - [x] Carcasa base v1 diseñada
 - [X] Diseño de carcasa v2 con integración real de componentes
 - [X] Implementar mecanismo de brida con eje
-- [ ] Justificar el mecanismo seleccionado
+- [X] Justificar el mecanismo seleccionado
 - [X] Diseñar acoples y soportes mecánicos
 - [X] Diseño de orejas y tapa listo
-- [ ] Diseño de acople para microfono
-- [ ] Base de servomotor apoyado en cuerpo
-- [ ] Patas 
+- [X] Diseño de acople para microfono
+- [X] Base de servomotor apoyado en cuerpo
+- [X] Patas
+- [ ] Pendiente carcasas o ajustes para microcontrolares
 
 ### Movimientos expresivos
-- [ ] Definir qué elementos del robot son activos y cuáles pasivos
-- [ ] Analizar movimientos expresivos inspirados en llamas
+- [X] Definir qué elementos del robot son activos y cuáles pasivos
+- [X] Analizar movimientos expresivos inspirados en llamas
 - [ ] Definir significado comunicativo de:
   - movimiento de orejas
   - inclinación de cabeza
@@ -107,7 +108,7 @@ Este repositorio contiene el diseño, implementación y validación de **Inti**,
 
 - [x] Raspberry Pi configurada
 - [ ] Definir sistema de alimentación final
-- [ ] Integrar dispositivo de salida de audio (USB)
+- [X] Integrar dispositivo de salida de audio (USB)
 - [ ] Organizar cableado interno
 - [ ] Estimar consumo energético del sistema
 
@@ -115,11 +116,11 @@ Este repositorio contiene el diseño, implementación y validación de **Inti**,
 
 ## 🏗️ 7. Fabricación e Integración (Capítulo 5)
 
-- [ ] Impresión 3D de carcasa
-- [ ] Ensamblaje de pantalla
+- [X] Impresión 3D de carcasa (Pendientes algunas partes)
+- [X] Ensamblaje de pantalla
 - [ ] Integración de sistema de voz
 - [ ] Ensamblaje general del prototipo
-- [ ] Pruebas funcionales básicas
+- [X] Pruebas funcionales básicas (Se han realizado algunas pruebas de movimiento)
 
 ---
 
@@ -146,7 +147,7 @@ Este repositorio contiene el diseño, implementación y validación de **Inti**,
 
 ## 📄 9. Documentación de la tesis
 
-- [ ] Capítulo 4 – Diseño detallado
+- [X] Capítulo 4 – Diseño detallado. Pendiente: Sección electrónica
 - [ ] Capítulo 5 – Fabricación e integración
 - [ ] Capítulo 6 – Validación
 - [ ] Discusión
