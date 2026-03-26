@@ -13,6 +13,8 @@ export default function Home() {
     set(ref(db, "movimiento/izquierda"), 0);
     set(ref(db, "movimiento/arriba"), 0);
     set(ref(db, "movimiento/abajo"), 0);
+    set(ref(db, "movimiento/negar"), 0);
+    set(ref(db, "movimiento/asentir"), 0);
   }
 
   function ejecutarIzquierda() {
@@ -20,6 +22,44 @@ export default function Home() {
     set(ref(db, "movimiento/derecha"), 0);
     set(ref(db, "movimiento/arriba"), 0);
     set(ref(db, "movimiento/abajo"), 0);
+    set(ref(db, "movimiento/negar"), 0);
+    set(ref(db, "movimiento/asentir"), 0);
+  }
+
+  function ejecutarArriba() {
+    set(ref(db, "movimiento/arriba"), 1);
+    set(ref(db, "movimiento/derecha"), 0);
+    set(ref(db, "movimiento/izquierda"), 0);
+    set(ref(db, "movimiento/abajo"), 0);
+    set(ref(db, "movimiento/negar"), 0);
+    set(ref(db, "movimiento/asentir"), 0);
+  }
+
+  function ejecutarAbajo() {
+    set(ref(db, "movimiento/abajo"), 1);
+    set(ref(db, "movimiento/derecha"), 0);
+    set(ref(db, "movimiento/izquierda"), 0);
+    set(ref(db, "movimiento/arriba"), 0);
+    set(ref(db, "movimiento/negar"), 0);
+    set(ref(db, "movimiento/asentir"), 0);
+  }
+
+  function asentir() {
+    set(ref(db, "movimiento/abajo"), 0);
+    set(ref(db, "movimiento/derecha"), 0);
+    set(ref(db, "movimiento/izquierda"), 0);
+    set(ref(db, "movimiento/arriba"), 0);
+    set(ref(db, "movimiento/negar"), 0);
+    set(ref(db, "movimiento/asentir"), 1);
+  }
+
+  function negar() {
+    set(ref(db, "movimiento/abajo"), 0);
+    set(ref(db, "movimiento/derecha"), 0);
+    set(ref(db, "movimiento/izquierda"), 0);
+    set(ref(db, "movimiento/arriba"), 0);
+    set(ref(db, "movimiento/negar"), 1);
+    set(ref(db, "movimiento/asentir"), 0);
   }
 
 
@@ -47,7 +87,9 @@ export default function Home() {
             <div className="flex flex-col items-center gap-2">
 
             {/* Flecha arriba */}
-            <button className="p-3 rounded-full border dark:border-white hover:bg-zinc-200 dark:hover:bg-zinc-800 transition">
+            <button 
+            onClick={ejecutarArriba}
+            className="p-3 rounded-full border dark:border-white hover:bg-zinc-200 dark:hover:bg-zinc-800 transition">
                 <ArrowUp size={32} />
             </button>
 
@@ -68,9 +110,40 @@ export default function Home() {
             </div>
 
             {/* Flecha abajo */}
-            <button className="p-3 rounded-full border dark:border-white hover:bg-zinc-200 dark:hover:bg-zinc-800 transition">
+            <button 
+            onClick={ejecutarAbajo}
+            className="p-3 rounded-full border dark:border-white hover:bg-zinc-200 dark:hover:bg-zinc-800 transition">
                 <ArrowDown size={32} />
             </button>
+          </div>
+            {/* === SECCIÓN 2: GESTOS RÁPIDOS (ASENTIR Y NEGAR) === */}
+          <div className="flex flex-col items-center gap-6">
+            <h2 className="text-xl font-semibold">Gestos rápidos</h2>
+            <div className="flex gap-10">
+              
+              {/* Bloque Asentir */}
+              <div className="flex flex-col items-center gap-2">
+                <button 
+                  onClick={asentir}
+                  className="px-8 py-4 rounded-xl border dark:border-white hover:bg-zinc-200 dark:hover:bg-zinc-800 transition font-medium">
+                  <span className="font-medium mt-2">Asentir</span>
+                </button>
+              </div>
+
+              {/* Bloque Negar */}
+              <div className="flex flex-col items-center gap-2">
+                <button 
+                  onClick={negar}
+                  className="px-8 py-4 rounded-xl border dark:border-white hover:bg-zinc-200 dark:hover:bg-zinc-800 transition font-medium">
+                  <span className="font-medium mt-2">Negar</span>
+                </button>
+              </div>
+
+          
+            </div>
+
+
+
 
             </div>
        
