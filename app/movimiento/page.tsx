@@ -4,7 +4,24 @@ import { ArrowUp, ArrowDown, ArrowLeft, ArrowRight } from "lucide-react";
 
 import Image from "next/image";
 import Link from "next/link";
+import { db } from "../firebase/firebase.js";
+import { ref, set } from "firebase/database";
 export default function Home() {
+
+  function ejecutarDerecha() {
+    set(ref(db, "movimiento/derecha"), 1);
+    set(ref(db, "movimiento/izquierda"), 0);
+    set(ref(db, "movimiento/arriba"), 0);
+    set(ref(db, "movimiento/abajo"), 0);
+  }
+
+  function ejecutarIzquierda() {
+    set(ref(db, "movimiento/izquierda"), 1);
+    set(ref(db, "movimiento/derecha"), 0);
+    set(ref(db, "movimiento/arriba"), 0);
+    set(ref(db, "movimiento/abajo"), 0);
+  }
+
 
   return (
     // 1. Usamos un Fragmento (<>) para devolver dos elementos hermanos.
@@ -36,11 +53,16 @@ export default function Home() {
 
             {/* Izquierda - Derecha */}
             <div className="flex gap-4">
-                <button className="p-3 rounded-full border dark:border-white hover:bg-zinc-200 dark:hover:bg-zinc-800 transition">
+                <button 
+                onClick={ejecutarIzquierda}
+                className="p-3 rounded-full border dark:border-white hover:bg-zinc-200 dark:hover:bg-zinc-800 transition">
                 <ArrowLeft size={32} />
+
                 </button>
 
-                <button className="p-3 rounded-full border dark:border-white hover:bg-zinc-200 dark:hover:bg-zinc-800 transition">
+                <button 
+                onClick={ejecutarDerecha}
+                className="p-3 rounded-full border dark:border-white hover:bg-zinc-200 dark:hover:bg-zinc-800 transition">
                 <ArrowRight size={32} />
                 </button>
             </div>
@@ -51,41 +73,15 @@ export default function Home() {
             </button>
 
             </div>
+       
+          </div>
+
+      
+
+            
         </div>
 
 
-        {/* === MOVER OREJAS === */}
-        <div className="flex flex-col items-center gap-3">
-            <h2 className="text-xl font-semibold">Mover orejas</h2>
-
-            {/* Flechas */}
-            <div className="flex flex-col items-center gap-2">
-
-            {/* Arriba */}
-            <button className="p-3 rounded-full border dark:border-white hover:bg-zinc-200 dark:hover:bg-zinc-800 transition">
-                <ArrowUp size={32} />
-            </button>
-
-            {/* Izquierda / Derecha */}
-            <div className="flex gap-4">
-                <button className="p-3 rounded-full border dark:border-white hover:bg-zinc-200 dark:hover:bg-zinc-800 transition">
-                <ArrowLeft size={32} />
-                </button>
-
-                <button className="p-3 rounded-full border dark:border-white hover:bg-zinc-200 dark:hover:bg-zinc-800 transition">
-                <ArrowRight size={32} />
-                </button>
-            </div>
-
-            {/* Abajo */}
-            <button className="p-3 rounded-full border dark:border-white hover:bg-zinc-200 dark:hover:bg-zinc-800 transition">
-                <ArrowDown size={32} />
-            </button>
-
-            </div>
-        </div>
-
-        </div>
 
 
         
