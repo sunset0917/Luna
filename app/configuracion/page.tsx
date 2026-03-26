@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { db } from "../firebase/firebase";
+import { db } from "../firebase/firebase.js";
 import { ref, set } from "firebase/database";
 
 export default function Home() {
@@ -50,6 +50,14 @@ export default function Home() {
             Triste
           </button>
         </div>
+
+        <h2 className="subtitulos_subpaginas">
+          Volumen
+        </h2>
+        
+        <h2 className="subtitulos_subpaginas">
+          Batería
+        </h2>
       </div>
 
       {/* 3. La barra de navegación ahora es HERMANA del div de contenido. */}
