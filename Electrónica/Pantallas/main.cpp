@@ -11,17 +11,7 @@
 
 // =========================
 // CONFIGURACIÓN WIFI
-// =========================
-#define WIFI_SSID "INSNSB_UDITD"
-#define WIFI_PASSWORD "$aNB0rj@.2019"
-//#define WIFI_SSID "BRAVO-2.4G_EXT"
-//#define WIFI_PASSWORD "07297875"
 
-// =========================
-// CONFIGURACIÓN FIREBASE
-// =========================
-#define API_KEY "AIzaSyAbY27g16MNfp9cafu99Fvcw8kmeB3k6v4" 
-#define DATABASE_URL "inti-e3de3-default-rtdb.firebaseio.com"
 
 // =========================
 // OLED
