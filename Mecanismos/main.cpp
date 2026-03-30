@@ -9,9 +9,9 @@
 #include <ESP32Servo.h>
 
 // --- WIFI Y FIREBASE ---
-#define WIFI_SSID "INSNSB_UDITD"
-#define WIFI_PASSWORD "$aNB0rj@.2019"
-#define DATABASE_URL "inti-e3de3-default-rtdb.firebaseio.com"
+#define WIFI_SSID 
+#define WIFI_PASSWORD 
+#define DATABASE_URL 
 
 // --- SERVO ---
 static const int servoPin = 18;
