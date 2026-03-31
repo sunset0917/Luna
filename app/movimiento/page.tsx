@@ -118,7 +118,7 @@ export default function Home() {
           </div>
             {/* === SECCIÓN 2: GESTOS RÁPIDOS (ASENTIR Y NEGAR) === */}
           <div className="flex flex-col items-center gap-6">
-            <h2 className="text-xl font-semibold">Gestos rápidos</h2>
+            <h2 className="text-xl font-semibold">Acciones </h2>
             <div className="flex gap-10">
               
               {/* Bloque Asentir */}
