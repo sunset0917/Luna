@@ -8,16 +8,16 @@
 #include <WiFiClientSecure.h>
 #include <ESP32Servo.h>
 
-// --- WIFI Y FIREBASE ---
-#define WIFI_SSID 
-#define WIFI_PASSWORD 
-#define DATABASE_URL 
-
 // --- SERVO ---
-static const int servoPin = 18;
-Servo servo1;
+static const int servoPin_arriba = 19;
+static const int servoPin_abajo = 18;
 
-int posicionActualServo = 105; // posición inicial (se vuelve tu centro dinámico)
+
+Servo servo1; // Servo para el movimiento horizontal (girar cabeza)
+Servo servo2; // Servo para el movimiento vertical (asentir cabeza)
+
+int posicionActualServo = 105; // posición inicial del servo horizontal
+int posicionActualServo2 = 93; // Ir variando para encontrar la posición inicial correcta!
 int amplitud = 30;
 
 // --- CONTROL DE EVENTOS ---
@@ -36,6 +36,8 @@ unsigned long ultimaPeticion = 0;
 const int intervalo = 500;
 
 bool resetNegar = false;
+bool resetIzquierda = false;
+bool resetDerecha = false;
 
 // =========================
 // MOVIMIENTO SUAVE
@@ -67,23 +69,54 @@ void moverSuave(int fin) {
 // GESTO: NEGAR (CORRECTO)
 // =========================
 void negarCabeza() {
-  Serial.println("[Robot] Negar cabeza");
+  Serial.println("[Robot] Negar cabeza (suave)");
+
+  int centro = posicionActualServo;
+  int derecha = centro + amplitud;
+  int izquierda = centro - amplitud;
+
+  // Seguridad
+  derecha = constrain(derecha, 5, 175);
+  izquierda = constrain(izquierda, 5, 175);
+
+  // 1. Centro → derecha
+  for (int pos = centro; pos <= derecha; pos++) {
+    servo1.write(pos);
+    delay(10);
+  }
+
+  // 2. Derecha → izquierda (SIN parar)
+  for (int pos = derecha; pos >= izquierda; pos--) {
+    servo1.write(pos);
+    delay(10);
+  }
+
+  // 3. Izquierda → centro
+  for (int pos = izquierda; pos <= centro; pos++) {
+    servo1.write(pos);
+    delay(10);
+  }
+
+  posicionActualServo = centro;
+}
+
+void mirarIzquierda() {
+  Serial.println("[Robot] Mirar izquierda");
 
   int centro = posicionActualServo;
 
-  // 1. Va a la derecha
-  moverSuave(centro + amplitud);
-  delay(150);
-
-  // 2. Vuelve al centro
-  moverSuave(centro);
-  delay(150);
-
-  // 3. Va a la izquierda
   moverSuave(centro - amplitud);
-  delay(150);
+  delay(2000);
+  moverSuave(centro);
+}
 
-  // 4. Vuelve al centro
+void mirarDerecha() {
+  Serial.println("[Robot] Mirar derecha");
+
+  int centro = posicionActualServo;
+
+  moverSuave(centro + amplitud);
+  delay(2000);
   moverSuave(centro);
 }
 
@@ -96,14 +129,22 @@ void processData(AsyncResult &aResult) {
     int valor = aResult.payload().toInt();
 
     // SOLO NEGAR (controlado)
-    if (path == "/movimiento/negar") {
+    if (path == "/movimiento/negar" && valor == 1) {
 
-      if (valor == 1 ) {
-        negarCabeza();
-        resetNegar = true;
-      }
+      negarCabeza();
+      resetNegar = true;
+      
 
 
+    }
+    if (path == "/movimiento/izquierda" && valor == 1) {
+      mirarIzquierda();
+      resetIzquierda = true;
+    }
+
+    if (path == "/movimiento/derecha" && valor == 1) {
+      mirarDerecha();
+      resetDerecha = true;
     }
   }
 }
@@ -116,11 +157,16 @@ void setup() {
 
   ESP32PWM::allocateTimer(0);
   servo1.setPeriodHertz(50);
+  servo2.setPeriodHertz(50);
+  
+  servo1.attach(servoPin_abajo, 500, 2400);
+  servo2.attach(servoPin_arriba, 500, 2400);
+  servo2.write(posicionActualServo2);
 
-  servo1.attach(servoPin, 500, 2400);
   servo1.write(posicionActualServo);
+   // posición neutra para el servo vertical
 
-  Serial.println("Servo listo (centro dinámico)");
+  Serial.println("Servos listos");
 
   // WiFi
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
@@ -152,9 +198,21 @@ void loop() {
     resetNegar = false;
   }
 
+  if (resetDerecha) {
+    Database.set(aClient, "/movimiento/derecha", 0);
+    resetDerecha = false;
+  }
+
+  if (resetIzquierda) {
+    Database.set(aClient, "/movimiento/izquierda", 0);
+    resetIzquierda = false;
+  }
+
   if (app.ready() && (millis() - ultimaPeticion > intervalo)) {
     ultimaPeticion = millis();
 
     Database.get(aClient, "/movimiento/negar", processData);
+    Database.get(aClient, "/movimiento/derecha", processData);
+    Database.get(aClient, "/movimiento/izquierda", processData);
   }
 }
